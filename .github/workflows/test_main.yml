@@ -25,9 +25,9 @@ jobs:
         echo "ENV is ${{ toJSON(env) }}"
         echo "python_version=${{ env.python_version }}" >> $GITHUB_OUTPUT
 
-  random_word:
-    needs: test
-    uses: ./.github/workflows/random_word.yml
+#  random_word:
+#    needs: test
+#    uses: ./.github/workflows/random_word.yml
   call_test:
     runs-on: ubuntu-latest
     steps:
