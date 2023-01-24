@@ -1,0 +1,28 @@
+name: Execute Test
+on:
+  workflow_call:
+    inputs:
+      test_type:
+        description: "Type of test to be executed"
+        default: unit_test
+        required: true
+        type: string
+      python_version:
+        description: "Python version to be used"
+        default: 3.8
+        required: true
+        type: string
+
+jobs:
+  code-test:
+    runs-on: [self-hosted, CAI-Enterprise]
+    steps:
+    - name: Print env variables
+      run: |
+        echo "Testing"
+        echo "ENV - ${{ inputs.python_version }}"
+        echo "ENV is ${{ toJSON(env) }}"
+    - name: Set up Python ${{ inputs.python_version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ inputs.python_version }}
