@@ -1,28 +1,19 @@
-name: Execute Test
+name: GHA_DEMO
 on:
-  workflow_call:
-    inputs:
-      test_type:
-        description: "Type of test to be executed"
-        default: unit_test
-        required: true
-        type: string
-      python_version:
-        description: "Python version to be used"
-        default: 3.8
-        required: true
-        type: string
+  push:
+    branches:
+      - '*'
+  workflow_dispatch:
 
 jobs:
-  code-test:
-    runs-on: [self-hosted, CAI-Enterprise]
-    steps:
-    - name: Print env variables
-      run: |
-        echo "Testing"
-        echo "ENV - ${{ inputs.python_version }}"
-        echo "ENV is ${{ toJSON(env) }}"
-    - name: Set up Python ${{ inputs.python_version }}
-      uses: actions/setup-python@v4
-      with:
-        python-version: ${{ inputs.python_version }}
+    random_word:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Create Random Word
+              id: random_word
+              uses: shyjuezy/gha-random-word@v1
+              with:
+                  word_length: 10
+            - name: Print output
+              run: |
+                  echo "The output is ${{ steps.random_word.outputs.random_word }}"
