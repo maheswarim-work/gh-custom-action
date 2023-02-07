@@ -11,7 +11,7 @@ jobs:
         steps:
             - name: Create Random Word
               id: random_word
-              uses: shyjuezy/gha-random-word@v1
+              uses: shyjuezy/gha_custom_action_demo@v1
               with:
                   word_length: 10
             - name: Print output
